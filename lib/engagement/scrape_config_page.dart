@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:web_scraper/tools/simple_id.dart';
 
-import '../preparation/validator.dart';
 import '../preparation/config_context.dart';
+import '../preparation/validator.dart';
 import '../processing/config.dart';
+import '../tools/simple_id.dart';
 
 class ScraperConfigPage extends StatelessWidget {
   final ScrapeConfigFileManager scrapeConfigFileManager = ScrapeConfigFileManager();

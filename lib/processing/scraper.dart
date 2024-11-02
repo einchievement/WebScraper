@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:http/http.dart';
 import 'package:html/parser.dart';
 import 'package:html/dom.dart';
-import 'package:web_scraper/processing/config.dart';
+
+import '../processing/config.dart';
 
 class ScrapePageResult {
   bool success;

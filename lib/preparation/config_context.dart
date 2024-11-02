@@ -1,5 +1,5 @@
-import 'package:web_scraper/processing/config.dart';
-import 'package:web_scraper/tools/simple_id.dart';
+import '../processing/config.dart';
+import '../tools/simple_id.dart';
 
 class ConfigContext {
   String? configName;

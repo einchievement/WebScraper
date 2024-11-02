@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:web_scraper/engagement/scrape_config_page.dart';
+
+import '../engagement/scrape_config_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
