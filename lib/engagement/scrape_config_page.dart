@@ -76,13 +76,13 @@ class ScraperConfigMainState extends State<ScraperConfigMain> {
 
   void _deleteCurrentConfig() {
     if (configContext.configName == null) {
+      // current ConfigContext has not been saved yet, simply reset
+      _createNewConfigContext();
       return;
     }
     bool deleteResult = widget.scrapeConfigFileManager.removeScrapeConfigByConfigName(configContext.configName!);
     if (deleteResult) {
-      setState(() {
-        configContext = ConfigContext.withDefault();
-      });
+      _createNewConfigContext();
     }
     // TODO tell user file could not be deleted
   }
