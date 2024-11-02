@@ -10,7 +10,7 @@ class ScrapeConfigFileManager {
   ScrapeConfigFileManager() : _directory = Directory.current;
 
   List<String> getScrapeConfigNames() {
-    if(scrapeConfigNames.isEmpty) {
+    if (scrapeConfigNames.isEmpty) {
       List<String> fileNames = _directory.listSync(followLinks: false)
           .whereType<File>()
           .where((file) => file.path.endsWith(fileExtension))
@@ -30,7 +30,7 @@ class ScrapeConfigFileManager {
 
   ScrapeConfig? getScrapeConfigByConfigName(String configName) {
     File configFile = File("${_directory.path}/$configName$fileExtension");
-    if(configFile.existsSync()) {
+    if (configFile.existsSync()) {
       return ScrapeConfig.fromFile(configFile);
     }
     return null;
@@ -41,7 +41,7 @@ class ScrapeConfigFileManager {
   /// Returns true if the file was deleted, or did not exist anymore. In case the file could not be deleted, false is returned.
   bool removeScrapeConfigByConfigName(String configName) {
     File configFile = File("${_directory.path}/$configName$fileExtension");
-    if(configFile.existsSync()) {
+    if (configFile.existsSync()) {
       scrapeConfigNames.remove(configName);
       try {
         configFile.deleteSync();
@@ -88,9 +88,9 @@ class ScrapeConfig {
 
     // rebuild child configs to prevent casting problems
     Map<String, Map<String, String>> transformedChildConfigs = {};
-    for(MapEntry<String, dynamic> mapEntry in (values[childConfigsParamName] as Map<String, dynamic>).entries) {
+    for (MapEntry<String, dynamic> mapEntry in (values[childConfigsParamName] as Map<String, dynamic>).entries) {
       Map<String, String> transformedChildConfigsMap = {};
-      for(MapEntry<String, dynamic> mapEntry in (mapEntry.value as Map<String, dynamic>).entries) {
+      for (MapEntry<String, dynamic> mapEntry in (mapEntry.value as Map<String, dynamic>).entries) {
         transformedChildConfigsMap[mapEntry.key] = mapEntry.value;
       }
       transformedChildConfigs[mapEntry.key] = transformedChildConfigsMap;

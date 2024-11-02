@@ -78,15 +78,15 @@ class ConfigContext {
     for (Map<String, String> value in childConfigs.values) {
       Map<String, String> valueClone = Map.from(value);
 
-      if(valueClone["type"] == SelectionType.attribute.value) {
+      if (valueClone["type"] == SelectionType.attribute.value) {
         String selector = valueClone["selector"]!;
         List<String> selectorAttribute = selector.split("|");
         // if no attribute for this selector is defined, use it as text
-        if(selectorAttribute.length < 2) {
+        if (selectorAttribute.length < 2) {
           valueClone["type"] == SelectionType.text.value;
         }
         // selector contains multiple pipes, use only the last as attribute and join the rest
-        else if(selectorAttribute.length > 2) {
+        else if (selectorAttribute.length > 2) {
           String attributeName = selectorAttribute.removeLast();
           String selector = selectorAttribute.join("|");
           valueClone["attributeName"] = attributeName;
@@ -99,7 +99,7 @@ class ConfigContext {
       }
 
       String? name = valueClone.remove("name");
-      if(name != null) {
+      if (name != null) {
         alteredChildConfigs[name] = valueClone;
       }
     }

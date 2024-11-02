@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:web_scraper/tools/simple_id.dart';
 
 import '../preparation/validator.dart';
-import '../processing/scraper.dart';
 import '../preparation/config_context.dart';
 import '../processing/config.dart';
 
@@ -47,7 +46,7 @@ class ScraperConfigMainState extends State<ScraperConfigMain> {
     }
     _formKey.currentState!.save();
     ScrapeConfig? scrapeConfig = configContext.toScrapeConfig();
-    if(scrapeConfig == null) {
+    if (scrapeConfig == null) {
       return;
     }
     scrapeConfig.writeScrapeConfigFile(true);
@@ -57,7 +56,7 @@ class ScraperConfigMainState extends State<ScraperConfigMain> {
   void _changeConfigContext(String configName) {
     ScrapeConfig? scrapeConfig = widget.scrapeConfigFileManager.getScrapeConfigByConfigName(configName);
     ConfigContext scrapeConfigContext;
-    if(scrapeConfig != null) {
+    if (scrapeConfig != null) {
       scrapeConfigContext = ConfigContext.withConfig(scrapeConfig);
     }
     else {
@@ -101,7 +100,7 @@ class ScraperConfigMainState extends State<ScraperConfigMain> {
               controller: TextEditingController(text: configContext.configName ?? "New Configuration ..."),
               dropdownMenuEntries: widget.scrapeConfigFileManager.getScrapeConfigNames().map((e) => DropdownMenuEntry<String>(value: e, label: e)).toList(),
               onSelected: (String? value) {
-                if(!Validator.isEmpty(value)) {
+                if (!Validator.isEmpty(value)) {
                   _changeConfigContext(value!);
                 }
               },
@@ -136,6 +135,7 @@ class ScraperConfigMainState extends State<ScraperConfigMain> {
             Text('Configuration Details')
           ],
         ),
+        // TODO add info if scrape config has been saved
         const VerticalSpacing(),
         Expanded(
           child: ScrapeConfigForm(
@@ -146,7 +146,6 @@ class ScraperConfigMainState extends State<ScraperConfigMain> {
       ],
     );
   }
-
 }
 
 class ScrapeConfigForm extends StatefulWidget {
@@ -223,12 +222,12 @@ class ScrapeConfigFormState extends State<ScrapeConfigForm> {
                     return Validator.validatePageNumber(value) ? null : "Enter a valid Number";
                   },
                   onSaved: (String? value) {
-                    if(Validator.isEmpty(value)) {
+                    if (Validator.isEmpty(value)) {
                       widget.configContext.pagingStart = null;
                       return;
                     }
                     int? parsed = int.tryParse(value!);
-                    if(parsed != null) {
+                    if (parsed != null) {
                       widget.configContext.pagingStart = parsed;
                     }
                   },
@@ -250,12 +249,12 @@ class ScrapeConfigFormState extends State<ScrapeConfigForm> {
                     return Validator.validatePageNumber(value) ? null : "Enter a valid Number";
                   },
                   onSaved: (String? value) {
-                    if(Validator.isEmpty(value)) {
+                    if (Validator.isEmpty(value)) {
                       widget.configContext.pagingEnd = null;
                       return;
                     }
                     int? parsed = int.tryParse(value!);
-                    if(parsed == null) {
+                    if (parsed == null) {
                       widget.configContext.pagingEnd = parsed;
                     }
                   },

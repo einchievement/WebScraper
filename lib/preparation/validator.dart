@@ -1,7 +1,7 @@
 class Validator {
 
   static bool validatePageNumber(String? pageNumber) {
-    if(isEmpty(pageNumber)) {
+    if (isEmpty(pageNumber)) {
       return true;
     }
     int? number = int.tryParse(pageNumber!);
@@ -9,7 +9,7 @@ class Validator {
   }
 
   static bool validateURL(String? url) {
-    if(isEmpty(url)) {
+    if (isEmpty(url)) {
       return false;
     }
     Uri? uri = Uri.tryParse(url!);
