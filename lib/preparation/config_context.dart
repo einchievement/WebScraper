@@ -37,15 +37,6 @@ class ConfigContext {
     }
   }
 
-  ConfigContext.clone(ConfigContext original) {
-    url = original.url;
-    pagingStart = original.pagingStart;
-    pagingEnd = original.pagingEnd;
-    delimiter = original.delimiter;
-    saveHeader = original.saveHeader;
-    containerSelector = original.containerSelector;
-  }
-
   void reset() {
     configName = null;
     url = null;

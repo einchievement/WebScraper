@@ -87,6 +87,25 @@ class ScraperConfigMainState extends State<ScraperConfigMain> {
     // TODO tell user file could not be deleted
   }
 
+  void _duplicateCurrentConfig() {
+    String? configName = configContext.configName;
+    if (configName == null) {
+      _createNewConfigContext();
+      return;
+    }
+    ScrapeConfig? scrapeConfig = widget.scrapeConfigFileManager.getScrapeConfigByConfigName(configName);
+    if (scrapeConfig == null) {
+      _createNewConfigContext();
+      return;
+    }
+    ConfigContext duplicateContext = ConfigContext.withConfig(scrapeConfig);
+    duplicateContext.configName = null;
+
+    setState(() {
+      configContext = duplicateContext;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -113,9 +132,9 @@ class ScraperConfigMainState extends State<ScraperConfigMain> {
               onPressed: _createNewConfigContext,
               icon: const Icon(Icons.add),
             ),
-            const IconButton(
-              onPressed: null, // TODO change
-              icon: Icon(Icons.content_copy),
+            IconButton(
+              onPressed: configContext.configName == null ? null : _duplicateCurrentConfig,
+              icon: const Icon(Icons.content_copy),
             ),
             IconButton(
               onPressed: _deleteCurrentConfig,
