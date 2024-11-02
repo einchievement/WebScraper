@@ -40,7 +40,7 @@ class ScraperConfigMainState extends State<ScraperConfigMain> {
   final _formKey = GlobalKey<FormState>();
   ConfigContext configContext = ConfigContext.withDefault();
 
-  void _executeScrape() {
+  void _saveConfig() {
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -141,8 +141,8 @@ class ScraperConfigMainState extends State<ScraperConfigMain> {
               icon: const Icon(Icons.delete_outline),
             ),
             OutlinedButton(
-                onPressed: _executeScrape,
-                child: const Text("Execute")
+                onPressed: _saveConfig,
+                child: const Text("Save")
             ),
           ],
         ),
